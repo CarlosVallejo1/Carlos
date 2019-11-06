@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+//By Carlos Vallejo
+
+//If the piece of data is larger it goes to the right
+
+struct Node
+ {
+	int piceOfData;
+	struct Node *left; //Small
+	struct Node *right; //Large
+
+ };
+
+void addNode(int num, struct Node *root){
+	
+	struct Node *temp= malloc(sizeof(struct Node));
+
+	temp->piceOfData=num;
+	temp->right=NULL;
+	temp->left=NULL;
+	int flag=0;
+
+	while(flag!=1){
+		if( num > root->piceOfData )
+		{
+
+			if(root->right==NULL)
+			{
+				root->right = temp;
+				flag=1;
+			}else{
+				root= root->right;
+			}
+
+		}
+		else
+		{
+			if(root->left==NULL)
+			{
+				root->left= temp;
+				flag=1;
+			}else{
+				root = root ->left;
+			}
+		}
+ }
+ }
+
+
+
+void printTree(struct Node *root)
+{
+	if( (root != NULL) && (root->right != NULL) )
+	{
+		printTree(root->left);
+	}
+
+	if(root!=NULL)
+	{
+		printf("%i\n", root->piceOfData);
+	}
+
+	if(root!=NULL && root->right!=NULL)
+	{
+		printTree(root->right);
+	}
+}
+
+int main()
+{
+
+struct Node *root=malloc(sizeof(struct Node));
+root->piceOfData=10;
+root->left=NULL;
+root->right=NULL;
+
+addNode(3, root);
+addNode(26, root);
+addNode(4, root);
+addNode(5, root);
+addNode(2, root);
+addNode(1, root);
+addNode(7, root);
+printTree(root);
+
+
+return 0;
+}
