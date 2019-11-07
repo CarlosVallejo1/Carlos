@@ -12,7 +12,10 @@ struct Node
 
  };
 
-void addNode(int num, struct Node *root){
+void addNode(int num, struct Node *root)
+{
+	
+
 	
 	struct Node *temp= malloc(sizeof(struct Node));
 
@@ -38,20 +41,22 @@ void addNode(int num, struct Node *root){
 		{
 			if(root->left==NULL)
 			{
-				root->left= temp;
+				root->left = temp;
 				flag=1;
 			}else{
-				root = root ->left;
+				root = root->left;
 			}
 		}
  }
+
  }
 
 
 
 void printTree(struct Node *root)
 {
-	if( (root != NULL) && (root->right != NULL) )
+
+	if( (root != NULL) && (root->left != NULL) )
 	{
 		printTree(root->left);
 	}
@@ -75,12 +80,17 @@ root->piceOfData=10;
 root->left=NULL;
 root->right=NULL;
 
-addNode(3, root);
-addNode(26, root);
-addNode(4, root);
-addNode(5, root);
+addNode(-1, root);
+addNode(77, root);
 addNode(2, root);
+addNode(3, root);
+addNode(8, root);
 addNode(1, root);
+addNode(4, root);
+addNode(6, root);
+addNode(9, root);
+addNode(99, root);
+addNode(5, root);
 addNode(7, root);
 printTree(root);
 
