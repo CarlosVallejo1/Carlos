@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+	int data;
+	struct Node *left;
+	struct Node *right;
+
+
+};
+
+struct Node *createNewNode(int data)
+{
+	struct Node *temp= malloc(sizeof(struct Node));
+	temp->data=data;
+
+	temp->left=NULL;
+	temp->right=NULL;
+
+	return(temp);
+}
+
+struct Node *addNode(struct Node *root, int data)
+{
+	if(root==NULL){
+		root = createNewNode(data);
+	}else if(data<=root->data){
+		root->left = addNode(root->left,data); 
+	}else{
+		root->right = addNode(root->right,data);
+	}
+
+	return root;
+}
+
+void printInOrder(struct Node *root)
+{
+	if( root != NULL && root->left != NULL )
+	{
+		printInOrder(root->left);
+	}
+
+	if(root != NULL)
+	{
+		printf("%i\n", root->data);
+	}
+
+	if(root != NULL && root->right!=NULL){
+		printInOrder(root->right);
+	}
+
+}
+
+
+int main()
+{
+
+	struct Node *root= NULL;
+	
+
+	root=addNode(root, 10);
+	root=addNode(root, 23);
+	root=addNode(root,  1);
+	root=addNode(root,  35);
+	printInOrder(root);
+
+
+
+	return 0;
+}
